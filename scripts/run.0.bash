@@ -11,6 +11,5 @@ function run() {
 
 for action in $(echo $3 | tr "," "\n")
 do
-	echo $action
-	# run $1 $2 $action "$4"
+	run $1 $2 $action "$4"
 done
