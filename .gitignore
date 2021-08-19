@@ -1,2 +1,5 @@
 # General
 .env
+
+# Scripts
+output.json
