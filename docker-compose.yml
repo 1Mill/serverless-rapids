@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  aws:
+  localstack:
     image: localstack/localstack:0.12.16
     environment:
       DEFAULT_REGION: us-east-1
