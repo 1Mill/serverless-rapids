@@ -8,4 +8,5 @@ DEV_ENVIRONMENT="{
 	AWS_ENDPOINT=http://localstack:4566/,
 	AWS_REGION=us-east-1,
 	AWS_SECRET_ACCESS_KEY=string-exists-for-development,
+	NODE_ENV=development,
 }"
