@@ -10,6 +10,11 @@ COPY . .
 RUN find . -type d -exec chmod 755 {} \;
 RUN find . -type f -exec chmod 644 {} \;
 
-ENV NODE_ENV=production
+ENV \
+	NODE_ENV=production \
+	PUSHER_APPID=$PUSHER_APPID \
+	PUSHER_CLUSTER=$PUSHER_CLUSTER \
+	PUSHER_KEY=$PUSHER_KEY \
+	PUSHER_SECRET=$PUSHER_SECRET
 
 CMD [ "index.handler" ]
