@@ -20,4 +20,4 @@ const perform = async () => {
 	])
 }
 
-exports.handler = async (event, ctx) => await perform({ cloudevent: event, ctx })
+exports.handler = async (cloudevent, ctx) => await perform({ cloudevent, ctx })
