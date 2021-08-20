@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "pusher": "^5.0.0"
+    "ably": "^1.2.13"
   }
 }
