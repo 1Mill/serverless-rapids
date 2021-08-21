@@ -14,4 +14,4 @@ const perform = async ({ cloudevent, ctx }) => {
 	await channel.publish(cloudevent.type, { cloudevent })
 }
 
-exports.handler = async (cloudevent, ctx) => await perform({ cloudevent, ctx })
+exports.handler = async ({ cloudevent }, ctx) => await perform({ cloudevent, ctx })

@@ -8,14 +8,23 @@ const config = {
 }
 
 const perform = async ({ cloudevent, ctx }) => {
+	cloudevent = {
+		data: JSON.stringify({ data: true }),
+		subject: 'newnewnenwnewnewnew',
+		type: 'hello',
+	}
+
+	const payload = JSON.stringify({ cloudevent })
 	await Promise.allSettled([
-		invoke({
-			...config,
-			functionName: 'rapids-v0-journal',
-		}),
+		// invoke({
+		// 	...config,
+		// 	functionName: 'rapids-v0-journal',
+		// 	payload,
+		// }),
 		invoke({
 			...config,
 			functionName: 'rapids-v0-websockets',
+			payload,
 		}),
 	])
 }
