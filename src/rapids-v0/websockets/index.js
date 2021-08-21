@@ -2,7 +2,7 @@ const Ably = require('ably/promises')
 
 const CHANNEL_NAME = 'rapids-v0:2021-08-20'
 
-const perform = async ({ cloudevent, ctx }) => {
+const perform = async ({ cloudevent = {}, ctx }) => {
 	const { type } = cloudevent
 
 	if (!type) throw new Error('[contract] cloudevent.type is required')
