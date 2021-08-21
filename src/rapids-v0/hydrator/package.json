@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@1mill/lambda": "0.0.12"
+    "@1mill/lambda": "0.0.13"
   }
 }
