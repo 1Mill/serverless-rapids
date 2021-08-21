@@ -10,6 +10,11 @@ COPY . .
 RUN find . -type d -exec chmod 755 {} \;
 RUN find . -type f -exec chmod 644 {} \;
 
-ENV NODE_ENV=production
+ENV \
+	AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+	AWS_ENDPOINT=$AWS_ENDPOINT \
+	AWS_REGION=$AWS_REGION \
+	AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+	NODE_ENV=production
 
 CMD [ "index.handler" ]
