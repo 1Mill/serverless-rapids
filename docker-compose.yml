@@ -8,6 +8,7 @@ services:
       HOST_TMP_FOLDER: /tmp/localstack
       LAMBDA_DOCKER_NETWORK: lambda-network
       LAMBDA_EXECUTOR: docker
+      LAMBDA_REMOTE_DOCKER: 1
       LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
       LS_LOG: trace
       SERVICES: ecr,lambda
