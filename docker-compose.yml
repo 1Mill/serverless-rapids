@@ -5,6 +5,7 @@ services:
     image: localstack/localstack:0.12.16
     environment:
       DEFAULT_REGION: us-east-1
+      HOST_TMP_FOLDER: /tmp/localstack
       LAMBDA_DOCKER_NETWORK: lambda-network
       LAMBDA_EXECUTOR: docker
       LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
