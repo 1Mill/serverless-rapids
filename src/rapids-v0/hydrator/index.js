@@ -7,7 +7,7 @@ const config = {
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 }
 
-const perform = async () => {
+const perform = async ({ cloudevent, ctx }) => {
 	await Promise.allSettled([
 		invoke({
 			...config,
