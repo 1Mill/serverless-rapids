@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@1mill/cloudevents": "^0.11.0",
     "@1mill/lambda": "0.0.13"
   }
 }
