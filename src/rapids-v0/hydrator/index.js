@@ -1,17 +1,16 @@
 const { invoke } = require('@1mill/lambda')
 const { v6: { createCloudevent } } = require('@1mill/cloudevents')
 
-const config = {
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	endpoint: process.env.AWS_ENDPOINT,
-	region: process.env.AWS_REGION,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-}
-
 const perform = async ({ cloudevent = {}, ctx }) => {
 	// * Validate attributes of cloudevent
 	createCloudevent({ ...cloudevent })
 
+	const config = {
+		accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+		endpoint: process.env.AWS_ENDPOINT,
+		region: process.env.AWS_REGION,
+		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+	}
 	const payload = JSON.stringify({ cloudevent })
 	await Promise.allSettled([
 		// invoke({
