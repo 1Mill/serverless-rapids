@@ -8,12 +8,6 @@ const config = {
 }
 
 const perform = async ({ cloudevent, ctx }) => {
-	cloudevent = {
-		data: JSON.stringify({ data: true }),
-		subject: 'newnewnenwnewnewnew',
-		type: 'hello',
-	}
-
 	const payload = JSON.stringify({ cloudevent })
 	await Promise.allSettled([
 		// invoke({
