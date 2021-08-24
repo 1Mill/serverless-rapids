@@ -5,13 +5,6 @@ const { v6: { createCloudevent } } = require('@1mill/cloudevents')
 let client = null
 
 const perform = async ({ cloudevent , ctx }) => {
-	cloudevent = {
-		data: JSON.stringify({ myData: 'yes' }),
-		id: 'test',
-		source: 'dev-test',
-		type: 'hello.v2',
-	}
-
 	createCloudevent({ ...cloudevent }) // * Validate attributes of cloudevent
 
 	// * https://www.jeremydaly.com/reuse-database-connections-aws-lambda/
