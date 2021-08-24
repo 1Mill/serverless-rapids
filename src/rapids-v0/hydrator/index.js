@@ -39,9 +39,10 @@ const perform = async ({ cloudevent , ctx }) => {
 	}))
 	const promises = commands.map(async c => await client.send(c))
 
-	(await Promise.allSettled(promises))
-	.filter(res => res.status === 'rejected')
-	.forEach(res => console.error(res.reason))
+	const responses = await Promise.allSettled(promises)
+	responses
+		.filter(res => res.status === 'rejected')
+		.forEach(res => console.error(res.reason))
 
 	return true
 }
