@@ -1,0 +1,7 @@
+[
+	{
+		"functionId": "my-lambda-arn",
+		"functionType": "lambda",
+		"type": "cmd.do-this-thing.v0"
+	}
+]
