@@ -34,7 +34,7 @@ const perform = async ({ cloudevent , ctx }) => {
 	]
 	const commands = functionIds.map(id => new InvokeCommand({
 		FunctionName: id,
-		InvocationType: 'Event',
+		InvocationType: process.env.NODE_ENV === 'development' ? 'Event' : 'RequestResponse',
 		Payload: JSON.stringify(cloudevent),
 	}))
 	const promises = commands.map(async c => await client.send(c))
