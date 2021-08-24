@@ -6,14 +6,12 @@ services:
     environment:
       DEFAULT_REGION: us-east-1
       HOST_TMP_FOLDER: /tmp/localstack
-      LAMBDA_DOCKER_NETWORK: lambda-network
+      LAMBDA_DOCKER_NETWORK: localstack-network
       LAMBDA_EXECUTOR: docker
       LAMBDA_REMOTE_DOCKER: 1
       LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
       LS_LOG: trace
       SERVICES: ecr,lambda
-    networks:
-      - lambda-network
     ports:
       - 4566:4566
     volumes:
@@ -21,5 +19,5 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
-  lambda-network:
-    name: lambda-network
+  default:
+    name: localstack-network
