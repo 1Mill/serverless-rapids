@@ -1,4 +1,5 @@
-const { invoke } = require('@1mill/lambda')
+const { LambdaClient, InvokeCommand } = require('@aws-sdk/client-lambda')
+const { getFunctionIds } = require('./getFunctionMaps')
 const { v6: { createCloudevent } } = require('@1mill/cloudevents')
 
 const perform = async ({ cloudevent = {}, ctx }) => {
