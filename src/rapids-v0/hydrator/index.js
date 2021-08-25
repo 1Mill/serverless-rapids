@@ -23,7 +23,10 @@ const perform = async ({ cloudevent , ctx }) => {
 
 	const functionIds = [
 		'rapids-v0-websockets',
-		...getFunctionIds({ functionType: 'lambda', type: cloudevent.type }),
+		...getFunctionIds({
+			functionType: 'lambda',
+			type: cloudevent.type,
+		}),
 	]
 	const commands = functionIds.map(id => new InvokeCommand({
 		FunctionName: id,
