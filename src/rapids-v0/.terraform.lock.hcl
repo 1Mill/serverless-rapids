@@ -1,9 +1,24 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
+provider "registry.terraform.io/carlpett/sops" {
+  version     = "0.6.3"
+  constraints = "~> 0.6.3"
+  hashes = [
+    "h1:1Dx43rBcTvC7sKDvAsLwM038mph2BBLs9VcF4UAGs7A=",
+    "zh:0c9f0cad271cbd4c3fa97961b6276ff86f7db2d5dc39ea7de687b5e5091b5f4b",
+    "zh:4180cf700dc8ccc71db5d4a0496c22a54301a617ae53d93bba91cb142694552e",
+    "zh:656f35d78120bd50d82767a814f53a0a4f96ff1f5f79e40089f259bb1f09ce9e",
+    "zh:98e53430bbf13631b314f9107372262151503c133b0551a370e23a0b451f5005",
+    "zh:a9c5cdcf12ea89eee54e55779f0e0c868350fc2b48b79a394500d3b04ea28919",
+    "zh:b042e80e60c0745ee3c8c49860ecb6e069f75c4c60aa8d6dd2f188f8c0a4f4ab",
+    "zh:fe2194ecf065beb9a384b4893cd9d3d975e39db89b38d2b5af05c43352d83397",
+  ]
+}
+
 provider "registry.terraform.io/hashicorp/aws" {
   version     = "3.55.0"
-  constraints = "~> 3.55"
+  constraints = ">= 3.35.0, ~> 3.55"
   hashes = [
     "h1:pQzssRQ6BMdyO65Lq5PRx766l8swjcCNKrNyCkcJa6I=",
     "zh:1795562df65e9e5a604c90fac17ab1a706bc398b38271a11bc43565d45532595",
@@ -41,7 +56,7 @@ provider "registry.terraform.io/hashicorp/external" {
 
 provider "registry.terraform.io/hashicorp/local" {
   version     = "2.1.0"
-  constraints = "~> 2.0, ~> 2.1"
+  constraints = ">= 1.0.0, ~> 2.0"
   hashes = [
     "h1:EYZdckuGU3n6APs97nS2LxZm3dDtGqyM4qaIvsmac8o=",
     "zh:0f1ec65101fa35050978d483d6e8916664b7556800348456ff3d09454ac1eae2",

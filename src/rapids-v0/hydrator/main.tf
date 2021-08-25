@@ -1,12 +1,3 @@
-terraform {
-	required_providers {
-		local = {
-			source = "hashicorp/local"
-			version = "~> 2.1"
-		}
-	}
-}
-
 module "config" {
 	source  = "click-flow/file-content-to-object/local"
 	version = "0.0.2"

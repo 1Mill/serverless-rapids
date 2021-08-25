@@ -1,19 +1,19 @@
 terraform {
 	required_providers {
-		local = {
-			source = "hashicorp/local"
-			version = "~> 2.1"
+		sops = {
+			source = "carlpett/sops"
+			version = "~> 0.6.3"
 		}
 	}
 }
 
+data "sops_file" "secrets" { source_file = "${path.module}/secrets.sops.json" }
 module "config" {
 	source  = "click-flow/file-content-to-object/local"
 	version = "0.0.2"
 
 	filename = "${path.module}/config.bash"
 }
-
 module "docker-image" {
 	source = "terraform-aws-modules/lambda/aws//modules/docker-build"
 
@@ -27,7 +27,7 @@ module "lambda" {
 	version = "~> 2.11"
 
 	environment_variables = {
-		ABLY_API_KEY: "TODO"
+		ABLY_API_KEY: data.sops_file.secrets.data["ABLY_API_KEY"]
 		NODE_ENV: "production"
 	}
 	create_package = false

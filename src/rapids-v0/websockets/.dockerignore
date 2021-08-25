@@ -4,3 +4,4 @@ config.bash
 dockerfile
 main.tf
 node_modules
+secrets.sops.json
