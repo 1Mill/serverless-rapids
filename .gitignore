@@ -6,3 +6,8 @@ node_modules
 
 # Scripts
 output.json
+
+# Terraform
+*.terraform*
+*.tfstate*
+!.terraform.lock.hcl
