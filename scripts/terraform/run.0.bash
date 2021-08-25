@@ -3,7 +3,7 @@
 function run() {
 	local DIR=$1
 	local VERSION=$2
-	local ACTION=$3
+	local ACTION="${@:3}"
 
 	source $(dirname $BASH_SOURCE)/constants.0.bash
 
@@ -30,4 +30,4 @@ function run() {
 	docker-compose -f $FILE run terraform $ACTION
 }
 
-run $1 $2 $3
+run $1 $2 "${@:3}"
