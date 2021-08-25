@@ -27,9 +27,7 @@ module "lambda" {
 	version = "~> 2.11"
 
 	environment_variables = {
-		INVOKE_AWS_ACCESS_KEY_ID: "TODO"
-		INVOKE_AWS_REGION: "us-east-1"
-		INVOKE_AWS_SECRET_ACCESS_KEY: "TODO"
+		ABLY_API_KEY: "TODO"
 		NODE_ENV: "production"
 	}
 	create_package = false
