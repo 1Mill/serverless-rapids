@@ -5,8 +5,13 @@ function run() {
 	local VERSION=$2
 	local ACTION=$3
 
+	source $(dirname $BASH_SOURCE)/constants.0.bash
+
+	local CONFIG_FILE_PATH=$(pwd)/$DIR/$CONFIG_FILENAME
+	source $CONFIG_FILE_PATH
+
 	local FILE=$(dirname $BASH_SOURCE)/docker-compose.$VERSION.yml
-	local TERRAFORM_VERSION=1.0.5
+	local TERRAFORM_VERSION=$TERRAFORM_VERSION
 
 	DIR=$(pwd)/$1 \
 	TERRAFORM_VERSION=$TERRAFORM_VERSION \
