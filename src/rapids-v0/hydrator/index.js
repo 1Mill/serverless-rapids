@@ -12,12 +12,12 @@ const perform = async ({ cloudevent , ctx }) => {
 	if (!client) {
 		client = new LambdaClient({
 			credentials: {
-				accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-				secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+				accessKeyId: process.env.INVOKE_AWS_ACCESS_KEY_ID,
+				secretAccessKey: process.env.INVOKE_AWS_SECRET_ACCESS_KEY,
 			},
-			endpoint: process.env.AWS_ENDPOINT,
+			endpoint: process.env.INVOKE_AWS_ENDPOINT,
 			maxAttempts: 3,
-			region: process.env.AWS_REGION,
+			region: process.env.INVOKE_AWS_REGION,
 		})
 	}
 
