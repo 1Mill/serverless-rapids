@@ -1,3 +1,12 @@
+terraform {
+	required_providers {
+		sops = {
+			source = "carlpett/sops"
+			version = "~> 0.6.3"
+		}
+	}
+}
+
 module "config" {
 	source  = "click-flow/file-content-to-object/local"
 	version = "0.0.2"
@@ -5,6 +14,7 @@ module "config" {
 	filename = "${path.module}/config.bash"
 }
 
+data "sops_file" "secrets" { source_file = "${path.module}/secrets.sops.json" }
 module "docker-image" {
 	source = "terraform-aws-modules/lambda/aws//modules/docker-build"
 
@@ -18,9 +28,9 @@ module "lambda" {
 	version = "~> 2.11"
 
 	environment_variables = {
-		INVOKE_AWS_ACCESS_KEY_ID: "TODO"
+		INVOKE_AWS_ACCESS_KEY_ID: data.sops_file.secrets.data["INVOKE_AWS_ACCESS_KEY_ID"]
 		INVOKE_AWS_REGION: "us-east-1"
-		INVOKE_AWS_SECRET_ACCESS_KEY: "TODO"
+		INVOKE_AWS_SECRET_ACCESS_KEY: data.sops_file.secrets.data["INVOKE_AWS_SECRET_ACCESS_KEY"]
 		NODE_ENV: "production"
 	}
 	create_package = false
