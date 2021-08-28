@@ -2,25 +2,24 @@ const { LambdaClient, InvokeCommand } = require('@aws-sdk/client-lambda')
 const { getFunctionIds } = require('./getFunctionIds')
 const { v6: { createCloudevent } } = require('@1mill/cloudevents')
 
-let aws = null
+let aws
+if (typeof aws === 'undefined') {
+	aws = new LambdaClient({
+		credentials: {
+			accessKeyId: process.env.INVOKE_AWS_ACCESS_KEY_ID,
+			secretAccessKey: process.env.INVOKE_AWS_SECRET_ACCESS_KEY,
+		},
+		endpoint: process.env.INVOKE_AWS_ENDPOINT,
+		maxAttempts: 3,
+		region: process.env.INVOKE_AWS_REGION,
+	})
+}
 
 const perform = async ({ cloudevent , ctx }) => {
 	// * https://www.jeremydaly.com/reuse-database-connections-aws-lambda/
 	ctx.callbackWaitsForEmptyEventLoop = false
 
 	createCloudevent({ ...cloudevent }) // * Validate attributes of cloudevent
-
-	if (!aws) {
-		aws = new LambdaClient({
-			credentials: {
-				accessKeyId: process.env.INVOKE_AWS_ACCESS_KEY_ID,
-				secretAccessKey: process.env.INVOKE_AWS_SECRET_ACCESS_KEY,
-			},
-			endpoint: process.env.INVOKE_AWS_ENDPOINT,
-			maxAttempts: 3,
-			region: process.env.INVOKE_AWS_REGION,
-		})
-	}
 
 	const functionIds = [
 		'rapids-v0-websockets',
