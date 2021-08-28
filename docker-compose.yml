@@ -6,7 +6,7 @@ services:
     environment:
       DEFAULT_REGION: us-east-1
       HOST_TMP_FOLDER: /tmp/localstack
-      LAMBDA_DOCKER_NETWORK: localstack-network
+      LAMBDA_DOCKER_NETWORK: src-network
       LAMBDA_EXECUTOR: docker
       LAMBDA_REMOTE_DOCKER: 1
       LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
@@ -20,4 +20,4 @@ services:
 
 networks:
   default:
-    name: localstack-network
+    name: src-network
