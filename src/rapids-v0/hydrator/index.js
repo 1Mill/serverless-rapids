@@ -5,10 +5,11 @@ const { v6: { createCloudevent } } = require('@1mill/cloudevents')
 let aws = null
 
 const perform = async ({ cloudevent , ctx }) => {
-	createCloudevent({ ...cloudevent }) // * Validate attributes of cloudevent
-
 	// * https://www.jeremydaly.com/reuse-database-connections-aws-lambda/
 	ctx.callbackWaitsForEmptyEventLoop = false
+
+	createCloudevent({ ...cloudevent }) // * Validate attributes of cloudevent
+
 	if (!aws) {
 		aws = new LambdaClient({
 			credentials: {
