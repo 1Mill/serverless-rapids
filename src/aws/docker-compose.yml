@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   localstack:
-    image: localstack/localstack:0.12.16
+    image: localstack/localstack:0.12.17
     environment:
       DEFAULT_REGION: us-east-1
       HOST_TMP_FOLDER: /tmp/localstack
