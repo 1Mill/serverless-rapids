@@ -2,15 +2,15 @@ const { LambdaClient, InvokeCommand } = require('@aws-sdk/client-lambda')
 const { getFunctionIds } = require('./getFunctionIds')
 const { v6: { createCloudevent } } = require('@1mill/cloudevents')
 
-let client = null
+let aws = null
 
 const perform = async ({ cloudevent , ctx }) => {
 	createCloudevent({ ...cloudevent }) // * Validate attributes of cloudevent
 
 	// * https://www.jeremydaly.com/reuse-database-connections-aws-lambda/
 	ctx.callbackWaitsForEmptyEventLoop = false
-	if (!client) {
-		client = new LambdaClient({
+	if (!aws) {
+		aws = new LambdaClient({
 			credentials: {
 				accessKeyId: process.env.INVOKE_AWS_ACCESS_KEY_ID,
 				secretAccessKey: process.env.INVOKE_AWS_SECRET_ACCESS_KEY,
@@ -33,7 +33,7 @@ const perform = async ({ cloudevent , ctx }) => {
 		InvocationType: process.env.NODE_ENV === 'development' ? 'Event' : 'RequestResponse',
 		Payload: JSON.stringify(cloudevent),
 	}))
-	const promises = commands.map(async c => await client.send(c))
+	const promises = commands.map(async c => await aws.send(c))
 
 	const responses = await Promise.allSettled(promises)
 	responses
