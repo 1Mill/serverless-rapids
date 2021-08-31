@@ -16,6 +16,7 @@ services:
   mongo:
     image: mongo:5.0.2
     environment:
+      MONGO_INITDB_DATABASE: development
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_ROOT_USERNAME: root
     networks:
@@ -23,7 +24,12 @@ services:
         aliases:
           - mongo-able
     restart: always
+    volumes:
+      - mongo-volume:/data/db
 
 networks:
   default:
     name: src-network
+
+volumes:
+  mongo-volume: {}
