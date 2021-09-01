@@ -12,6 +12,9 @@ RUN find . -type f -exec chmod 644 {} \;
 
 ENV \
 	ABLY_API_KEY=$ABLY_API_KEY \
+	JOURNAL_DB_NAME=$JOURNAL_DB_NAME \
+	JOURNAL_DB_URI=$JOURNAL_DB_URI \
+	JOURNAL_TABLE_NAME=$JOURNAL_TABLE_NAME \
 	NODE_ENV=production
 
 CMD [ "index.handler" ]
