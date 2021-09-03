@@ -15,7 +15,7 @@ if (typeof aws === 'undefined') {
 	})
 }
 
-const perform = async ({ cloudevent , ctx }) => {
+exports.handler = async (cloudevent = {}, ctx = {}) => {
 	// * https://www.jeremydaly.com/reuse-database-connections-aws-lambda/
 	ctx.callbackWaitsForEmptyEventLoop = false
 
@@ -38,9 +38,10 @@ const perform = async ({ cloudevent , ctx }) => {
 	const responses = await Promise.allSettled(promises)
 	responses
 		.filter(res => res.status === 'rejected')
-		.forEach(res => console.error(res.reason))
+		.forEach(res => {
+			console.error(res.reason)
+			throw new Error(res.reason)
+		})
 
 	return true
 }
-
-exports.handler = async (cloudevent = {}, ctx = {}) => await perform({ cloudevent, ctx })
