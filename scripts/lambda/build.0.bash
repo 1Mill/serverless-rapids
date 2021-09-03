@@ -6,6 +6,7 @@ function build() {
 	local CONFIG_FILE_PATH=$(pwd)/$1/$CONFIG_FILENAME
 	source $CONFIG_FILE_PATH
 
+	local DIR=$(pwd)/$1
 	local FUNCTION_NAME=$FUNCTION_NAME
 
 	docker build --tag $FUNCTION_NAME $DIR
