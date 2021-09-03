@@ -1,22 +1,30 @@
+# $_source=https://github.com/1Mill/lambda-docker/blob/main/nodejs/v14/2021-09-02/dockerfile
+# syntax=docker/dockerfile:1
+
 FROM public.ecr.aws/lambda/nodejs:14
+
+# Inject and auto-configure @sentry/serverless
+# https://docs.sentry.io/platforms/node/guides/aws-lambda/container-image/
+COPY --from=public.ecr.aws/sentry/sentry-node-serverless-sdk:28 /opt/ /opt
 
 WORKDIR $LAMBDA_TASK_ROOT
 
-COPY package.json package-lock.json ./
-RUN npm ci
+# Workaround for conditional COPY - https://stackoverflow.com/a/46801962
+COPY package*.json ./
+RUN [ -f package-lock.json ] && npm ci || echo Skip
 
 COPY . .
 
+# https://aws.amazon.com/premiumsupport/knowledge-center/lambda-deployment-package-errors/
 RUN find . -type d -exec chmod 755 {} \;
 RUN find . -type f -exec chmod 644 {} \;
 
 ENV \
-	FUNCTIONS=$FUNCTIONS \
-	FUNCTIONS_DIR=./data \
-	INVOKE_AWS_ACCESS_KEY_ID=$INVOKE_AWS_ACCESS_KEY_ID \
-	INVOKE_AWS_ENDPOINT=$INVOKE_AWS_ENDPOINT \
-	INVOKE_AWS_REGION=$INVOKE_AWS_REGION \
-	INVOKE_AWS_SECRET_ACCESS_KEY=$INVOKE_AWS_SECRET_ACCESS_KEY \
-	NODE_ENV=production
+	NODE_ENV=production \
+	SENTRY_DSN=$SENTRY_DSN \
+	SENTRY_TRACES_SAMPLE_RATE=0.001
+
+# Extention ---
+ENV FUNCTIONS_DIR=./data
 
 CMD [ "index.handler" ]
