@@ -12,7 +12,7 @@ function invoke() {
 		--cli-binary-format raw-in-base64-out \
 		--endpoint $LOCALSTACK_URL \
 		--function-name $FUNCTION_NAME \
-		--invocation-type Event \
+		--invocation-type RequestResponse \
 		--payload "${2-'{}'}" \
 		--region $LOCALSTACK_REGION \
 		output.json
