@@ -28,10 +28,10 @@ module "lambda" {
 	version = "~> 2.11"
 
 	environment_variables = {
-		1MILL_LAMBDA_AWS_ACCESS_KEY_ID: data.sops_file.secrets.data["INVOKE_AWS_ACCESS_KEY_ID"]
-		1MILL_LAMBDA_AWS_REGION: "us-east-1"
-		1MILL_LAMBDA_AWS_SECRET_ACCESS_KEY: data.sops_file.secrets.data["INVOKE_AWS_SECRET_ACCESS_KEY"]
-		NODE_ENV: "production"
+		"1MILL_LAMBDA_AWS_ACCESS_KEY_ID" = data.sops_file.secrets.data["INVOKE_AWS_ACCESS_KEY_ID"]
+		"1MILL_LAMBDA_AWS_REGION" = "us-east-1"
+		"1MILL_LAMBDA_AWS_SECRET_ACCESS_KEY" = data.sops_file.secrets.data["INVOKE_AWS_SECRET_ACCESS_KEY"]
+		"NODE_ENV" = "production"
 	}
 	create_package = false
 	function_name = module.config.variables.FUNCTION_NAME
