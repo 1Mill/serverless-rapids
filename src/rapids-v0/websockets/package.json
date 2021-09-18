@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@1mill/journal": "0.0.4",
+    "@1mill/journal": "^0.1.0",
     "ably": "^1.2.13"
   }
 }

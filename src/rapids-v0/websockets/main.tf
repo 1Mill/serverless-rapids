@@ -27,8 +27,12 @@ module "lambda" {
 	version = "~> 2.11"
 
 	environment_variables = {
-		ABLY_API_KEY: data.sops_file.secrets.data["ABLY_API_KEY"]
-		NODE_ENV: "production"
+		1MILL_JOURNAL_NAME = "todo"
+		1MILL_JOURNAL_TABLE = "todo"
+		1MILL_JOURNAL_TYPE = "todo"
+		1MILL_JOURNAL_URI = "todo"
+		ABLY_API_KEY = data.sops_file.secrets.data["ABLY_API_KEY"]
+		NODE_ENV = "production"
 	}
 	create_package = false
 	function_name = module.config.variables.FUNCTION_NAME
