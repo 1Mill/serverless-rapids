@@ -23,6 +23,8 @@ services:
       default:
         aliases:
           - mongo-able
+    ports:
+      - 27017:27017
     restart: always
     volumes:
       - mongo-volume:/data/db
